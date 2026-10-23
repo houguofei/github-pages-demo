@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Pages 静态站点示例</title>
+<meta name="description" content="一个可直接部署到 GitHub Pages 的最小静态站点，含相对路径、.nojekyll、404 页面与 SPA 兼容说明。">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="hero">
+  <p class="eyebrow">GitHub Pages · 最小可运行示例</p>
+  <h1>静态站点已经跑起来了</h1>
+  <p class="lead">
+    本页不依赖任何构建工具，直接由 HTML + CSS + JS 组成。
+    把它推到 GitHub 仓库、在 Settings → Pages 里选好分支，几分钟后就能通过
+    <code>https://&lt;用户名&gt;.github.io/&lt;仓库名&gt;/</code> 访问。
+  </p>
+</header>
+
+<main>
+  <section class="card" id="runtime-card">
+    <h2>运行时自检</h2>
+    <p>下面这行由 <code>app.js</code> 在页面加载后写入。如果显示的是“脚本未执行”，说明 JS 路径或部署路径有问题。</p>
+    <dl class="facts">
+      <div><dt>页面路径</dt><dd id="fact-path">读取中…</dd></div>
+      <div><dt>脚本状态</dt><dd id="fact-status">读取中…</dd></div>
+      <div><dt>加载时刻</dt><dd id="fact-time">读取中…</dd></div>
+    </dl>
+    <button id="ping" type="button">点我验证交互</button>
+    <p class="hint" id="ping-result">尚未点击。</p>
+  </section>
+
+  <section class="card">
+    <h2>部署三步走</h2>
+    <ol class="steps">
+      <li>在 GitHub 新建仓库，把本文件夹里的文件推到 <code>main</code> 分支根目录。</li>
+      <li>仓库 <strong>Settings → Pages → Source</strong> 选 <em>Deploy from a branch</em>，分支 <code>main</code>、文件夹 <code>/ (root)</code>，保存。</li>
+      <li>等 1–2 分钟，打开 <code>https://&lt;用户名&gt;.github.io/&lt;仓库名&gt;/</code>。</li>
+    </ol>
+    <p class="note">静态文件必须放在发布源文件夹的根目录。如果把本站放进子目录，URL 末尾要带该子目录。</p>
+  </section>
+
+  <section class="card">
+    <h2>上线前检查清单</h2>
+    <ul class="checks">
+      <li>资源用相对路径（<code>./styles.css</code>），不要写 <code>/styles.css</code>——项目站点位于子路径下，绝对路径会 404。</li>
+      <li>放了空的 <code>.nojekyll</code> 文件，阻止 Jekyll 构建时忽略 <code>_</code> 开头的目录。</li>
+      <li>备了 <code>404.html</code>，链接写错时给用户一个正常页面而不是 GitHub 默认 404。</li>
+      <li>免费账号只能用<strong>公开</strong>仓库发布 Pages；私有仓库发布需 Pro/Team/Enterprise。</li>
+      <li>站点公开可访问，不要放密钥、内网地址、个人隐私数据。</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>遇到问题</h2>
+    <dl class="faq">
+      <div><dt>打开是 404</dt><dd>确认 Pages 已启用、分支/文件夹选对、Actions 或构建日志无报错；刚保存后有 1–2 分钟延迟。</dd></div>
+      <div><dt>样式没生效</dt><dd>多半是路径问题：项目站点要相对路径，或构建工具里把 base 配成 <code>/仓库名/</code>。</dd></div>
+      <div><dt>改了没变化</dt><dd>浏览器缓存，按 Ctrl+F5；再确认最新一次部署是成功的。</dd></div>
+      <div><dt>SPA 刷新子路由 404</dt><dd>把 <code>index.html</code> 复制一份为 <code>404.html</code>，由前端路由接管。</dd></div>
+    </dl>
+  </section>
+</main>
+
+<footer>
+  <p>本页为 GitHub Pages 使用示例 · 可自由修改后部署</p>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
